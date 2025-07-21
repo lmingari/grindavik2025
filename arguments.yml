@@ -1,0 +1,55 @@
+#Eruption parameters
+volcano: Grindavik
+lat_vent: 63.899996
+lon_vent: -22.350001
+elevation_vent: 79.0
+date: '20250718'
+start_time: 0
+end_time: 48
+
+#Model configuration
+meteo_database: 'GFS'
+initial_condition: 'RESTART'
+restart: "/home/lmingari/fall3d/iceland/20250717/final.2025-07-18-00-00.rst.nc"
+west_lon: -55.0
+east_lon: 20.0
+south_lat: 50.0
+north_lat: 75.0
+dx: 0.2
+dy: 0.1
+nlevels: 20
+
+# GFS configuration: 
+resolution: 0.25
+step: 1
+
+# MPI configuration
+nx: 4
+ny: 2
+nz: 1
+
+# Plot configuration
+keys:
+  - SO2_col_mass
+times:
+  - 0
+  - 6
+  - 12
+  - 18
+  - 24
+  - 30
+  - 36
+  - 42
+  - 48
+levels:
+  - 1
+  - 2
+  - 4
+  - 6
+  - 8
+  - 10
+  - 12
+  - 14
+  - 16
+  - 18
+  - 20
