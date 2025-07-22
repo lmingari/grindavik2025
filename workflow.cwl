@@ -465,7 +465,7 @@ $graph:
           lat: lat_vent
           logo: 
             source: basepath
-            valueFrom: $(self + "/CSIC.png")
+            valueFrom: $(self + "/logo.png")
         out: [png]
       create_folder:
         run: "#gather_files"
