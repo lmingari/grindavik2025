@@ -91,7 +91,6 @@ class MapImage:
                 "cmap": cmap,
                 "extend": 'max',
                 "transform": crs.PlateCarree(),
-                "zorder": 4,
                 }
         if not autoScale: 
             args_dict['levels'] = levels
@@ -204,7 +203,7 @@ class MapImage:
                 facecolor = 'lightgrey',
                 alpha     = 0.8
                 )
-        ax.add_feature(LAND)
+        ax.add_feature(LAND, zorder=0)
         ax.add_feature(BORDERS, linewidth=0.4)
         ###
         ### Add grid lines
