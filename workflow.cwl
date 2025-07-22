@@ -302,12 +302,6 @@ $graph:
       netcdf:
         type: File
         inputBinding: {prefix: --netcdf}
-      minval:
-        type: float?
-        inputBinding: {prefix: --minval}
-      levels:
-        type: float[]?
-        inputBinding: {prefix: --levels}
       lat:
         type: float?
         inputBinding: {prefix: --lat}
@@ -317,6 +311,9 @@ $graph:
       time:
         type: int?
         inputBinding: {prefix: --time}
+      logo:
+        type: string?
+        inputBinding: {prefix: --logo}
     outputs:
       png:
         type: File
@@ -358,7 +355,7 @@ $graph:
         type: "#main/MeteoDatabase"
       initial_condition:
         type: "#main/InitialCondition"
-      restart: string
+      restart: string?
       west_lon: float
       east_lon: float
       north_lat: float
@@ -376,10 +373,9 @@ $graph:
       # Plot inputs
       times: int[]
       keys: string[]
-      levels: float[]
       basepath: 
         type: string
-        default: "/home/lmingari/fall3d/iceland"
+        default: "/home/lmingari/fall3d/grindavik2025"
     outputs: 
       folder:
         type: Directory
@@ -467,7 +463,9 @@ $graph:
           netcdf: run_fall3d/res
           lon: lon_vent
           lat: lat_vent
-          levels: levels
+          logo: 
+            source: basepath
+            valueFrom: $(self + "/CSIC.png")
         out: [png]
       create_folder:
         run: "#gather_files"
