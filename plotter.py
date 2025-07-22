@@ -91,6 +91,7 @@ class MapImage:
                 "cmap": cmap,
                 "extend": 'max',
                 "transform": crs.PlateCarree(),
+                "zorder": 4,
                 }
         if not autoScale: 
             args_dict['levels'] = levels
