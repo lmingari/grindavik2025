@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Slideshow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Daily forecasts for ongoing eruption in Iceland (July 2025) </title>
     <style>
+        :root {
+            --text-color: #566573;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,7 +18,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f8c471 0%, #fad7a0 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -37,7 +42,7 @@
             color: #333;
             margin-bottom: 30px;
             font-size: 2.5em;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: var(--text-color);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -93,7 +98,7 @@
 
         .slide img {
             max-width: 100%;
-            max-height: 400px;
+            max-height: 500px;
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
@@ -131,8 +136,8 @@
         }
 
         .nav-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
+            background: linear-gradient(45deg, #f8c471, #fad7a0);
+            color: var(--text-color);
             border: none;
             padding: 15px 25px;
             border-radius: 50px;
@@ -207,17 +212,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>Iceland eruption (2025)</h1>
+        <h1>Daily forecasts</h1>
+        <p> Daily forecasts of SO2 dispersion for the eruption ongoing on the
+        Sundhnúkur crater (63°54.000'N, 22°21.000'W) started on July 16 at
+        04:30Z </p>
+        <br>
         
         <div class="controls">
             <select id="folderSelect">
                 <option value="">Select a date...</option>
-                <option value="20250716">20250716</option>
-                <option value="20250717">20250717</option>
-                <option value="20250718">20250718</option>
-                <option value="20250719">20250719</option>
-                <option value="20250720">20250720</option>
-                <option value="20250721">20250721</option>
+                <option value="20250716">16/07/2025</option>
+                <option value="20250717">17/07/2025</option>
+                <option value="20250718">18/07/2025</option>
+                <option value="20250719">19/07/2025</option>
+                <option value="20250720">20/07/2025</option>
+                <option value="20250721">21/07/2025</option>
             </select>
             
 
@@ -230,13 +239,17 @@
         </div>
 
         <div class="navigation">
-            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-6)" disabled>⬅️ Previous</button>
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-6)" disabled>
+                <i class="fa-solid fa-circle-chevron-left"></i> Previous
+            </button>
             
             <div class="slide-info">
                 <span id="slideCounter">0 / 0</span>
             </div>
             
-            <button class="nav-btn" id="nextBtn" onclick="changeSlide(6)" disabled>Next ➡️</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(6)" disabled>
+                Next <i class="fa-solid fa-circle-chevron-right"></i>
+            </button>
         </div>
 
     </div>
