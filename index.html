@@ -228,7 +228,7 @@
                 <option value="20250720">20/07/2025</option>
                 <option value="20250721">21/07/2025</option>
                 <option value="20250722">22/07/2025</option>
-                <option value="20250723">23/07/2025</option>
+                <option value="20250723" selected>23/07/2025</option>
             </select>
             
 
@@ -268,16 +268,18 @@
         <br>
 
         <pre>
-#Eruption parameters
-volcano: Grindavik
+# Eruption parameters
+#####################
+volcano: Sundhnúkur
 lat_vent: 63.899996
 lon_vent: -22.350001
 elevation_vent: 79.0
-date: '20250720'
+date: '20250722'
 start_time: 0
 end_time: 72
 
-#Model configuration
+# Model configuration
+#####################
 meteo_database: 'GFS'
 initial_condition: 'RESTART'
 restart: ...
@@ -289,7 +291,8 @@ dx: 0.2
 dy: 0.1
 nlevels: 20
 
-# GFS configuration:
+# GFS configuration
+###################
 resolution: 0.25
 step: 1
         </pre>
@@ -405,6 +408,7 @@ step: 1
 
         // Event listeners
         document.getElementById('folderSelect').addEventListener('change', initializeSlideshow);
+        window.onload = initializeSlideshow;
 
         // Keyboard navigation
         document.addEventListener('keydown', function(event) {
