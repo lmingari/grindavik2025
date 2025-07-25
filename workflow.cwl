@@ -319,13 +319,40 @@ $graph:
         type: File
         outputBinding: {glob: "*.png"}   
 
+  - id: cog_creator
+    class: CommandLineTool
+    label: Generate a tif output from a netcdf
+    baseCommand: 'createCOG.py'
+    arguments: []
+    doc: >
+      This tool reads a variable (key) from a FALL3D output 
+      file in netCDF format (netcdf) and produces a single
+      Cloud-Optimized GeoTIFF (COG) file in geotiff format
+    inputs:
+      netcdf:
+        label: FALL3D output file in netCDF format
+        type: File
+        inputBinding: {prefix: --fname}
+      key:
+        label: Variable key name to be plotted
+        type: string
+        inputBinding: {prefix: --key}
+      time:
+        label: Time step (zero-based indexed)
+        type: int
+        inputBinding: {prefix: --time}
+    outputs:
+      cog:
+        label: Georeferenced image in GeoTIFF file format
+        type: File
+        outputBinding:
+          glob: "*.tif"
+
   - id: gather_files
     class: ExpressionTool
     inputs:
       folder_name: string
-      figs: File[]
-      gribs: File[]
-      rst: File[]
+      files: File[]
     outputs:
       collected_folder: Directory
     expression: |
@@ -333,7 +360,7 @@ $graph:
           var dir = {
               "class": "Directory",
               "basename": inputs.folder_name,
-              "listing": inputs.figs.concat(inputs.gribs,inputs.rst)
+              "listing": inputs.files
           };
           return {"collected_folder": dir};
       }
@@ -377,9 +404,18 @@ $graph:
         type: string
         default: "/home/lmingari/fall3d/grindavik2025"
     outputs: 
-      folder:
+      pngs:
         type: Directory
-        outputSource: create_folder/collected_folder
+        outputSource: png_folder/collected_folder
+      cogs:
+        type: Directory
+        outputSource: cog_folder/collected_folder
+      rsts:
+        type: Directory
+        outputSource: rst_folder/collected_folder
+      gribs:
+        type: Directory
+        outputSource: grib_folder/collected_folder
     steps:
       configure:
         run: "#config"
@@ -467,12 +503,37 @@ $graph:
             source: basepath
             valueFrom: $(self + "/logo.png")
         out: [png]
-      create_folder:
+      create_cogs:
+        run: "#cog_creator"
+        scatter: [time,key]
+        scatterMethod: flat_crossproduct
+        in:
+          netcdf: run_fall3d/res
+          key: keys
+          time: times
+        out: [cog]
+      png_folder:
         run: "#gather_files"
         in:
-          figs: plot_maps/png
-          gribs: gfs_gribs/gribs
-          rst: run_fall3d/rst
+          files: plot_maps/png
+          folder_name: date
+        out: [collected_folder]
+      cog_folder:
+        run: "#gather_files"
+        in:
+          files: create_cogs/cog
+          folder_name: date
+        out: [collected_folder]
+      rst_folder:
+        run: "#gather_files"
+        in:
+          files: run_fall3d/rst
+          folder_name: date
+        out: [collected_folder]
+      grib_folder:
+        run: "#gather_files"
+        in:
+          files: gfs_gribs/gribs
           folder_name: date
         out: [collected_folder]
     requirements:

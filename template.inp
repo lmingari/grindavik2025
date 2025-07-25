@@ -266,7 +266,7 @@ SOURCE
    VENT_HEIGHT_(M) = $ELEVATION
    !
    HEIGHT_ABOVE_VENT_(M)         = 1500
-   MASS_FLOW_RATE_(KGS)          = 100
+   MASS_FLOW_RATE_(KGS)          = 40
    ALFA_PLUME                    = 0.1
    BETA_PLUME                    = 0.5
    EXIT_TEMPERATURE_(K)          = 1200.
