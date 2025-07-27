@@ -231,7 +231,8 @@
                 <option value="20250723">23/07/2025</option>
                 <option value="20250724">24/07/2025</option>
                 <option value="20250725">25/07/2025</option>
-                <option value="20250726" selected>26/07/2025</option>
+                <option value="20250726">26/07/2025</option>
+                <option value="20250727" selected>27/07/2025</option>
             </select>
             
 
@@ -263,7 +264,7 @@
         <h1>Model configuration</h1>
 
         <ul>
-          <li>The FALL3D model was drive using 72-h forecasts from GFS</li>
+          <li>The FALL3D model was driven using 72-h forecasts from GFS</li>
           <li>The model is initialized every day at 00:00 UTC using restart</li>
           <li>Initial condition is taken from the 24-h forecast from the previous day</li>
           <li>SO2 emission flux was assumed to be 100 kg/s with a Suzuki vertical distribution up to 1500m</li>
@@ -277,7 +278,7 @@ volcano: Sundhnúkur
 lat_vent: 63.899996
 lon_vent: -22.350001
 elevation_vent: 79.0
-date: '20250722'
+date: '20250727'
 start_time: 0
 end_time: 72
 
@@ -285,6 +286,7 @@ end_time: 72
 #####################
 meteo_database: 'GFS'
 initial_condition: 'RESTART'
+emission_rate: 40
 restart: ...
 west_lon: -55.0
 east_lon: 20.0
