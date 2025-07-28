@@ -6,3 +6,5 @@ numpy
 pandas
 xarray
 netcdf4
+rasterio
+rio_cogeo
