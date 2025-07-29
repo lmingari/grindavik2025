@@ -3,14 +3,14 @@ volcano: Grindavik
 lat_vent: 63.899996
 lon_vent: -22.350001
 elevation_vent: 79.0
-date: '20250728'
+date: '20250729'
 start_time: 0
 end_time: 72
 
 #Model configuration
 meteo_database: 'GFS'
 initial_condition: 'RESTART'
-restart: "/home/lmingari/fall3d/grindavik2025/20250727/final.2025-07-28-00-02.rst.nc"
+restart: "/home/lmingari/fall3d/grindavik2025/20250728/final.2025-07-29-00-02.rst.nc"
 west_lon: -55.0
 east_lon: 20.0
 south_lat: 50.0
